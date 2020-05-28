@@ -5,7 +5,11 @@ from time import sleep
 
 camera = PiCamera()
 
-for i in range(9):
-    sleep(5)
-    camera.capture('images/image%s.jpg' % i)
+id = 0
+shotIntervalSec = 3
+
+while True:
+    sleep(shotIntervalSec)
+    camera.capture('images/image%s.jpg' % id)
+    id = id + 1
 
