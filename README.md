@@ -1,4 +1,17 @@
-# Raspberry Pi
+## Resources
+
+this repository: ```https://github.com/hlussi/cat-repellent-water-gun.git```
+
+## pyenv
+```
+brew install pyenv
+brew install pyenv-virtualenv
+pyenv virtualenv 3.6.7 wassermat
+pyenv local wassermat
+pip install --proxy http://proxy.adnovum.ch:3128 -r requirements.txt
+```
+
+## Raspberry Pi
 
 - Configure wpa_supplicant
 

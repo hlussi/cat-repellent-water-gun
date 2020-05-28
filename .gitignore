@@ -1,0 +1,9 @@
+.idea/
+*.iml
+*.pyc
+venv/
+build/
+target/
+__pycache__/
+*egg-info/
+*.egg
