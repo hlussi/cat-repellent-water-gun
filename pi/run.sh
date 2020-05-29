@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-nohup ./src_make_image.py &
+# nohup ./src/make_image.py &
+nohup ./src/motion_sensor.py &

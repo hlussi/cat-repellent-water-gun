@@ -11,11 +11,8 @@ __version__ = "1.0"
 __maintainer__ = "pimylifeup.com"
 
 pir_sensor = 11
-piezo = 7
 
 GPIO.setmode(GPIO.BOARD)
-
-GPIO.setup(piezo,GPIO.OUT)
 
 GPIO.setup(pir_sensor, GPIO.IN)
 
@@ -26,10 +23,9 @@ try:
         current_state = GPIO.input(pir_sensor)
         if current_state == 1:
             print("GPIO pin %s is %s" % (pir_sensor, current_state))
-            GPIO.output(piezo,True)
-            time.sleep(1)
-            GPIO.output(piezo,False)
-            time.sleep(5)
+            print("sensor on")
+            time.sleep(2)
+            print("sensor off")
 except KeyboardInterrupt:
     pass
 finally:
