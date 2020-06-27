@@ -11,7 +11,7 @@ from signal import pause
 
 IMAGE_PATH = '/home/pi/pictures/'
 
-pir = MotionSensor(4)
+pir = MotionSensor(4, pull_up=True)
 camera = PiCamera()
 
 #start the camera
