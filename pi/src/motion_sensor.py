@@ -1,32 +1,22 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 	Detects motion and outputs a sound via a piezo buzzer. 
 """
 
-import RPi.GPIO as GPIO
-import time
+from gpiozero import MotionSensor
+from time import sleep
+from signal import pause
 
-__author__ = "gus-pimylifeup"
-__version__ = "1.0"
-__maintainer__ = "pimylifeup.com"
+pir = MotionSensor(4, pull_up=True)
 
-pir_sensor = 11
+cnt = 0
+def signal_motion():
+  global cnt
+  print("motion %s" % (cnt))
+  cnt = cnt + 1
+  sleep(0.1)
 
-GPIO.setmode(GPIO.BOARD)
+pir.when_motion = signal_motion
 
-GPIO.setup(pir_sensor, GPIO.IN)
+pause()
 
-current_state = 0
-try:
-    while True:
-        time.sleep(0.1)
-        current_state = GPIO.input(pir_sensor)
-        if current_state == 1:
-            print("GPIO pin %s is %s" % (pir_sensor, current_state))
-            print("sensor on")
-            time.sleep(2)
-            print("sensor off")
-except KeyboardInterrupt:
-    pass
-finally:
-    GPIO.cleanup()
