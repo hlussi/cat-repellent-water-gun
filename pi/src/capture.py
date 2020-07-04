@@ -9,7 +9,7 @@ from picamera import PiCamera
 from time import sleep
 from signal import pause
 
-IMAGE_PATH = '/home/pi/pictures/'
+IMAGE_PATH = '/home/pi/cat-repellent-water-gun/images'
 
 pir = MotionSensor(4, pull_up=True)
 camera = PiCamera()
