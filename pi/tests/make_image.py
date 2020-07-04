@@ -2,16 +2,17 @@
 
 from picamera import PiCamera
 from time import sleep
+import os
 
 # Create directory
-imgDir = '../images'
+IMG_DIR = '../../images'
  
 try:
     # Create target Directory
-    os.mkdir(imgDir)
-    print("Directory " , imgDir ,  " Created ") 
+    os.mkdir(IMG_DIR)
+    print("Directory " , IMG_DIR ,  " Created ") 
 except FileExistsError:
-    print("Directory " , imgDir ,  " already exists")
+    print("Directory " , IMG_DIR ,  " already exists")
     
 camera = PiCamera()
 
@@ -20,6 +21,6 @@ shotIntervalSec = 3
 
 while True:
     sleep(shotIntervalSec)
-    camera.capture('%s/image%s.jpg' % imgDir, id)
+    camera.capture('%s/image%s.jpg' % IMG_DIR, id)
     id = id + 1
 

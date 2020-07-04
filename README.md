@@ -1,10 +1,27 @@
 ## Resources
 
-this repository: ```https://github.com/hlussi/cat-repellent-water-gun.git```
+- this repository: ```https://github.com/hlussi/cat-repellent-water-gun.git```
+- pan/tilt tracking: https://www.pyimagesearch.com/2019/04/01/pan-tilt-face-tracking-with-a-raspberry-pi-and-opencv/
+- opencv: https://www.pyimagesearch.com/2018/07/30/opencv-object-tracking/
+- 
+
 
 # Setup & Configuration 
 
 ## Raspberry Pi Baseline
+
+- enable I2C
+```
+sudo apt-get install -y python-smbus
+sudo apt-get install -y i2c-tools
+# enable configuration in "Interfacing Options" -> "I2C" & "SPI"
+sudo raspi-config
+```
+
+- reboot,loging and check
+```
+sudo i2cdetect -y 1
+```
 
 - Configure wpa_supplicant
 
