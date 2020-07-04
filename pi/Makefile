@@ -5,7 +5,7 @@ python: venv
 	. venv/bin/activate && python3
 
 install: venv
-	. venv/bin/activate && pip install --upgrade pip setuptools wheel
+	. venv/bin/activate && pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
 
 freeze: venv
 	. venv/bin/activate	&& pip freeze > requirements.txt

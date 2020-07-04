@@ -1,4 +1,8 @@
+numpy==1.19.0
+opencv-python==4.2.0.34
 colorzero==1.1
 gpiozero==1.5.1
+# pi only
+picamera==1.13
 pkg-resources==0.0.0
 RPi.GPIO==0.7.0
