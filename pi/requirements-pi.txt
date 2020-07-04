@@ -1,0 +1,8 @@
+pyyaml>=5.3.1
+colorzero==1.1
+gpiozero==1.5.1
+numpy==1.18.5
+opencv-python==4.1.1.26
+picamera==1.13
+pkg-resources==0.0.0
+RPi.GPIO==0.7.0

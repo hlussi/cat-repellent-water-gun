@@ -1,0 +1,15 @@
+# Basic configuration file for the binrepo tests
+#
+# The following locations are supported (binrepo_servers)
+# - repo: the main binrepo server where repos are created and artefacts uploaded and possibly downloaded
+# - repl_repo: the replication binrepo where repos are created and artefacts downloaded from
+# - proxy: the proxy server where artefacts might be donwnloaded from
+#
+---
+binrepo_servers:
+  repo:
+    # the "main" binrepo server config. Artefacts are always uploaded to here. They are downloaded from here too if
+    # 'replication' is flase (-> see below)
+    repo_server: adn-binrepo-int-001.zh.adnovum.ch
+    binrepo_url: https://adn-binrepo-int-001.zh.adnovum.ch/artifactory
+
