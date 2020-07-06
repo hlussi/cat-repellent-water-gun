@@ -7,24 +7,32 @@ from multiprocessing import Process
 from imutils.video import VideoStream
 from crwtools.objcenter import ObjCenter
 from crwtools.pid import PID
-import pantilthat as pth
+from adafruit_servokit import ServoKit
+# import pantilthat as pth
 import argparse
 import signal
 import time
 import sys
 import cv2
 
+# ServoKit
+SERVO_PAN=0
+SERVO_TILT=1
+kit = ServoKit(channels=16)
+
 # define the range for the motors
-servoRange = (-90, 90)
+# servoRange = (-90, 90)
+servoRange = (0, 180)
 
 # function to handle keyboard interrupt
 def signal_handler(sig, frame):
 	# print a status message
 	print("[INFO] You pressed `ctrl + c`! Exiting...")
 
-	# disable the servos
-	pth.servo_enable(1, False)
-	pth.servo_enable(2, False)
+	# not necessary in ServoKit
+	# # disable the servos
+	# pth.servo_enable(1, False)
+	# pth.servo_enable(2, False)
 
 	# exit
 	sys.exit()
@@ -94,16 +102,21 @@ def set_servos(pan, tlt):
 	# loop indefinitely
 	while True:
 		# the pan and tilt angles are reversed
-		panAngle = -1 * pan.value
-		tltAngle = -1 * tlt.value
+		# adapted to ServoKit (+ 90)
+		panAngle = (-1 * pan.value) + 90
+		tltAngle = (-1 * tlt.value) + 90
 
 		# if the pan angle is within the range, pan
 		if in_range(panAngle, servoRange[0], servoRange[1]):
-			pth.pan(panAngle)
+			# using ServoKit (going from 0-180 instead od -90 to 90)
+			# pth.pan(panAngle)
+			kit.servo[SERVO_PAN].angle = panAngle
 
 		# if the tilt angle is within the range, tilt
 		if in_range(tltAngle, servoRange[0], servoRange[1]):
-			pth.tilt(tltAngle)
+			# using ServoKit (going from 0-180 instead od -90 to 90)
+			# pth.tilt(tltAngle)
+			kit.servo[SERVO_TILT].angle = tltAngle
 
 # check to see if this is the main body of execution
 if __name__ == "__main__":
@@ -115,9 +128,10 @@ if __name__ == "__main__":
 
 	# start a manager for managing process-safe variables
 	with Manager() as manager:
-		# enable the servos
-		pth.servo_enable(1, True)
-		pth.servo_enable(2, True)
+		# not necessary in ServoKit
+		# # enable the servos
+		# pth.servo_enable(1, True)
+		# pth.servo_enable(2, True)
 
 		# set integer values for the object center (x, y)-coordinates
 		centerX = manager.Value("i", 0)
@@ -167,6 +181,7 @@ if __name__ == "__main__":
 		processTilting.join()
 		processSetServos.join()
 
-		# disable the servos
-		pth.servo_enable(1, False)
-		pth.servo_enable(2, False)
+		# not necessary in ServoKit
+		# # disable the servos
+		# pth.servo_enable(1, False)
+		# pth.servo_enable(2, False)
